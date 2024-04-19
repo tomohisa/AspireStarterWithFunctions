@@ -2,7 +2,8 @@ using AspireStarter.AppHost;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
-var azurite = builder.AddContainer("azurite", "mcr.microsoft.com/azure-storage/azurite")
+var azurite = builder.AddContainer("azuriteAAA", "mcr.microsoft.com/azure-storage/azurite")
+    .WithVolumeMount("VolumeMount.AspireStarter.Azurite", "/data")
     .WithEndpoint(containerPort: 10000, name: "blob", hostPort: 11000)
     .WithEndpoint(containerPort: 10001, name: "queue", hostPort: 11001)
     .WithEndpoint(containerPort: 10001, name: "table", hostPort: 11002);
